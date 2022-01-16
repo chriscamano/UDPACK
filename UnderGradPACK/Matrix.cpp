@@ -184,6 +184,7 @@ unsigned Matrix::getCols() const {
 
 void Matrix::print() {
 	cout << "\n Printing Matrix... \n";
+	char borders[5] = { '\xc9' ,'\xBB','\xBA','\xC8','\xBC' };
 	string s;
 	int matrixSize, precisionVal;
 	int maxValLength = 0;
@@ -202,33 +203,38 @@ void Matrix::print() {
 		}
 	}
 	//update the precision value for printing table in accordance to the max entry length found during search
-	precisionVal=maxValLength;
-	//This are is a little sloppy, room for improvement
-	//add 1 for the left space between border and first column then add 1 to the precision value for the right space. Scale by column space
+	//add +1 to max length to account for '.' 
+	precisionVal=maxValLength+1;
+
+	//This is a little sloppy, room for improvement
+	//add 1 for the left space between border and first column then add 1 to the precision value for the right space after each index. Scale by column space
 	matrixSize = 1 + (precisionVal+1) * m_colSize;
 
 	//print top row with corners
-	cout << '\xc9';
-	for (int i = 0; i < matrixSize; i++) {
-		cout << " ";
-	}
-	cout << '\xBB' << endl;
+	cout << borders[0];
+	printSpaces(matrixSize);
+	cout << borders[1] << endl;
 
 	//print rows of matrix
 	for (int i = 0; i < m_rowSize; i++) {
-		cout << '\xBA' << " ";
+		cout << borders[2] << " ";
 		for (int j = 0; j < m_colSize; j++) {
-			cout << left << setfill('0')  << setprecision(precisionVal) << m_matrix[i][j] << " ";
+			cout << left << setfill('0')<<setw(precisionVal)  << setprecision(precisionVal) << m_matrix[i][j] << " ";
 		}
-		cout << '\xBA' << endl;
+		cout << borders[2] << endl;
 	}
 
 	//print bottom with corners
-	cout << '\xC8';
-	for (int i = 0; i < matrixSize; i++) {
-		cout << " ";
-	}
-	cout << '\xBC' << endl;
-
+	cout << borders[3];
+	printSpaces(matrixSize);
+	cout << borders[4] << endl;
 
 }
+
+void Matrix::printSpaces(const int &size)
+{
+	for (int i = 0; i < size; i++) {
+		cout << " ";
+	}
+}
+

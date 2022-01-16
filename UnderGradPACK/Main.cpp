@@ -43,7 +43,7 @@ int main() {
 	-No tensor calculations
 	-Matrices will start out at max of 20x20 and should have scalable output
 	*/
-	test
+	
 
 	Matrix A = Matrix("MatrixA.txt");
 	//cout << "            Matrix A" << endl;
@@ -66,7 +66,7 @@ int main() {
 
 	Matrix C = Matrix(A);
 	cout << "            Matrix C" << endl;
-	C.print();
+	//C.print();
 	cout << "            C*A" << endl;
 	C = C * A;
 	C.print();
