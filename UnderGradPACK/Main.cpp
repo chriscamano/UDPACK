@@ -43,7 +43,7 @@ int main() {
 	-No tensor calculations
 	-Matrices will start out at max of 20x20 and should have scalable output
 	*/
-
+	test
 
 	Matrix A = Matrix("MatrixA.txt");
 	//cout << "            Matrix A" << endl;
