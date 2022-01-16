@@ -20,7 +20,7 @@ int main() {
 	-SVD decompositionn
 	-QR factorization
 	-Hessenberg form calcualtions
-	-Househoulder reflections QR 
+	-Househoulder reflections QR
 	-QR method for eigenpairs
 	-Lanczos method
 	-Arnoldi method
@@ -43,7 +43,7 @@ int main() {
 	-No tensor calculations
 	-Matrices will start out at max of 20x20 and should have scalable output
 	*/
-	
+
 
 	Matrix A = Matrix("MatrixA.txt");
 	//cout << "            Matrix A" << endl;

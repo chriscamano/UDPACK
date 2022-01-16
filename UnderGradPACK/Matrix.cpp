@@ -97,12 +97,14 @@ Matrix::Matrix(const Matrix& right) {
 Matrix::~Matrix() {
 }
 
+//Overloaded = operator for matrix assignnment 
 Matrix Matrix::operator=(const Matrix& right) {
 	this->m_colSize = right.getCols();
 	this->m_rowSize = right.getRows();
 	this->m_matrix = right.m_matrix;
 	return  *this;
 }
+
 //Overloaded addition operator for matrix addition
 Matrix Matrix::operator+(Matrix& right) {
 	if (m_colSize == right.getCols() && m_rowSize == right.getRows()) {
@@ -122,11 +124,8 @@ Matrix Matrix::operator+(Matrix& right) {
 	}
 }
 //Overloaded subtraction operator for matrix addition
-Matrix Matrix::operator-(Matrix &right) {
-
-
-
-	if (m_colSize == right.getCols()&&m_rowSize==right.getRows()) {
+Matrix Matrix::operator-(Matrix& right) {
+	if (m_colSize == right.getCols() && m_rowSize == right.getRows()) {
 		//create new Matrix representing sum
 		Matrix sum(m_rowSize, m_colSize, 0.0);
 		//For each element pair add sum to relative index and return sum matrix
@@ -141,17 +140,18 @@ Matrix Matrix::operator-(Matrix &right) {
 		cout << "Dimension Mis-Match error" << endl;
 		return *this;
 	}
-	
+
 }
+
 //Overloaded multiplication operator for matrix multiplication 
-Matrix Matrix::operator*(Matrix &right) {
+Matrix Matrix::operator*(Matrix& right) {
 	Matrix product(m_rowSize, right.getCols(), 0.0);
-	if (m_colSize == right.getRows()){
+	if (m_colSize == right.getRows()) {
 		double temp = 0.0;
-		for (unsigned i = 0; i < m_rowSize; i++){
-			for (unsigned j = 0; j < right.getCols(); j++){
+		for (unsigned i = 0; i < m_rowSize; i++) {
+			for (unsigned j = 0; j < right.getCols(); j++) {
 				temp = 0.0;
-				for (unsigned k = 0; k < m_colSize; k++){
+				for (unsigned k = 0; k < m_colSize; k++) {
 					temp += m_matrix[i][k] * right(k, j);
 				}
 				product(i, j) = temp;
@@ -159,10 +159,56 @@ Matrix Matrix::operator*(Matrix &right) {
 		}
 		return product;
 	}
-	else{
-		cout<< "Dimension Mis-Match error"<<endl;
+	else {
+		cout << "Dimension Mis-Match error" << endl;
 		return *this;
 	}
+}
+
+
+
+// Scalar Addition
+Matrix Matrix::operator+(double& scalar) {
+	Matrix result(m_rowSize, m_colSize, 0.0);
+	for (unsigned i = 0; i < m_rowSize; i++) {
+		for (unsigned j = 0; j < m_colSize; j++) {
+			result(i, j) = this->m_matrix[i][j] + scalar;
+		}
+	}
+	return result;
+}
+
+// Scalar Subraction
+Matrix Matrix::operator-(double& scalar) {
+	Matrix result(m_rowSize, m_colSize, 0.0);
+	for (unsigned i = 0; i < m_rowSize; i++) {
+		for (unsigned j = 0; j < m_colSize; j++) {
+			result(i, j) = this->m_matrix[i][j] - scalar;
+		}
+	}
+	return result;
+}
+
+// Scalar Multiplication
+Matrix Matrix::operator*(double& scalar) {
+	Matrix result(m_rowSize, m_colSize, 0.0);
+	for (unsigned i = 0; i < m_rowSize; i++) {
+		for (unsigned j = 0; j < m_colSize; j++) {
+			result(i, j) = this->m_matrix[i][j] * scalar;
+		}
+	}
+	return result;
+}
+
+// Scalar Division
+Matrix Matrix::operator/(double& scalar) {
+	Matrix result(m_rowSize, m_colSize, 0.0);
+	for (unsigned i = 0; i < m_rowSize; i++) {
+		for (unsigned j = 0; j < m_colSize; j++) {
+			result(i, j) = this->m_matrix[i][j] / scalar;
+		}
+	}
+	return result;
 }
 
 double& Matrix::operator()(const unsigned& row, const unsigned& col)
@@ -181,6 +227,7 @@ unsigned Matrix::getRows() const {
 unsigned Matrix::getCols() const {
 	return m_colSize;
 }
+
 
 void Matrix::print() {
 	cout << "\n Printing Matrix... \n";
@@ -204,13 +251,16 @@ void Matrix::print() {
 	}
 	//update the precision value for printing table in accordance to the max entry length found during search
 	//add +1 to max length to account for '.' 
-	precisionVal=maxValLength+1;
+
+	precisionVal = maxValLength + 1;
 
 	//This is a little sloppy, room for improvement
 	//add 1 for the left space between border and first column then add 1 to the precision value for the right space after each index. Scale by column space
-	matrixSize = 1 + (precisionVal+1) * m_colSize;
+
+	matrixSize = 1 + (precisionVal + 1) * m_colSize;
 
 	//print top row with corners
+
 	cout << borders[0];
 	printSpaces(matrixSize);
 	cout << borders[1] << endl;
@@ -219,7 +269,8 @@ void Matrix::print() {
 	for (int i = 0; i < m_rowSize; i++) {
 		cout << borders[2] << " ";
 		for (int j = 0; j < m_colSize; j++) {
-			cout << left << setfill('0')<<setw(precisionVal)  << setprecision(precisionVal) << m_matrix[i][j] << " ";
+			//For each row print 0s until precision requirement is fufilled 
+			cout << left << setfill('0') << setw(precisionVal) << setprecision(precisionVal) << m_matrix[i][j] << " ";
 		}
 		cout << borders[2] << endl;
 	}
@@ -231,7 +282,7 @@ void Matrix::print() {
 
 }
 
-void Matrix::printSpaces(const int &size)
+void Matrix::printSpaces(const int& size)
 {
 	for (int i = 0; i < size; i++) {
 		cout << " ";

@@ -14,28 +14,33 @@ using std::tuple;
 
 class Matrix {
 public:
-    //Matrix constructors 
-    Matrix(unsigned, unsigned, double);
-    Matrix(const char*);
-    Matrix(const Matrix&);
-    ~Matrix();
+	//Matrix constructors 
+	Matrix(unsigned, unsigned, double);
+	Matrix(const char*);
+	Matrix(const Matrix&);
+	~Matrix();
 
-    Matrix operator=(const Matrix& right);
+	Matrix operator=(const Matrix& right);
 
-    //Matrix Scalar Operations 
-    Matrix operator+(Matrix&);
-    Matrix operator-(Matrix&);
-    Matrix operator*(Matrix&);
-    //Matrix syntax functions 
-    double& operator()(const unsigned&, const unsigned&);
-    Matrix transpose();
-    unsigned getRows() const;
-    unsigned getCols() const;
-    void print();
+	//Matrix Operations 
+	Matrix operator+(Matrix&);
+	Matrix operator-(Matrix&);
+	Matrix operator*(Matrix&);
+	//Scalar Operations
+	Matrix operator+(double&);
+	Matrix operator-(double&);
+	Matrix operator*(double&);
+	Matrix operator/(double&);
+	//Matrix syntax functions 
+	double& operator()(const unsigned&, const unsigned&);
+	Matrix transpose();
+	unsigned getRows() const;
+	unsigned getCols() const;
+	void print();
 
 private:
-    unsigned m_rowSize;
-    unsigned m_colSize;
-    vector<vector<double> > m_matrix;
-    void printSpaces(const int&);
+	unsigned m_rowSize;
+	unsigned m_colSize;
+	vector<vector<double> > m_matrix;
+	void printSpaces(const int&);
 };
