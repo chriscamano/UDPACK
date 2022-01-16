@@ -1,0 +1,8 @@
+﻿  Matrix.cpp
+C:\Users\Chris\source\repos\UnderGradPACK\UnderGradPACK\Matrix.cpp(174,9): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
+C:\Users\Chris\source\repos\UnderGradPACK\UnderGradPACK\Matrix.cpp(193,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\source\repos\UnderGradPACK\UnderGradPACK\Matrix.cpp(194,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\source\repos\UnderGradPACK\UnderGradPACK\Matrix.cpp(198,17): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Chris\source\repos\UnderGradPACK\UnderGradPACK\Matrix.cpp(218,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\source\repos\UnderGradPACK\UnderGradPACK\Matrix.cpp(220,21): warning C4018: '<': signed/unsigned mismatch
+  UnderGradPACK.vcxproj -> C:\Users\Chris\source\repos\UnderGradPACK\Debug\UnderGradPACK.exe
