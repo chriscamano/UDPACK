@@ -230,7 +230,6 @@ unsigned Matrix::getCols() const {
 
 
 void Matrix::print() {
-	cout << "\n Printing Matrix... \n";
 	char borders[5] = { '\xc9' ,'\xBB','\xBA','\xC8','\xBC' };
 	string s;
 	int matrixSize, precisionVal;

@@ -10,13 +10,13 @@ int main() {
 	Starting Date 1/14/22
 
 	Current goals include:
-	-Matrix addition
-	-Matrix subtraction
-	-Matrix multiplication
-	-Scalar addition
-	-Scalar multiplication
-	- Scalar Subraction
-	-Scalar division
+	//-Matrix addition DONE
+	//-Matrix subtraction DONE
+	//-Matrix multiplication DONE
+	//-Scalar addition DONE
+	//-Scalar multiplication DONE
+	//- Scalar Subraction DONE
+	//-Scalar division DONE
 	-SVD decompositionn
 	-QR factorization
 	-Hessenberg form calcualtions
@@ -44,30 +44,33 @@ int main() {
 	-Matrices will start out at max of 20x20 and should have scalable output
 	*/
 
-
+	cout << "------------Matrix properties Test-------------" << endl;
+	//file constructor test 
 	Matrix A = Matrix("MatrixA.txt");
-	//cout << "            Matrix A" << endl;
-	//A.print();
+	cout << "            Matrix A" << endl;
+	A.print();
 
-	//cout << "            Matrix B" << endl;
-	//Matrix B = Matrix("MatrixB.txt");
-	//A.print();
-
-	//cout << "            A+B" << endl;
-
-	//A = A + B;
-	//A.print();
-
-
-	//cout << "            B-B" << endl;
-
-	//B = B - B;
-	//B.print();
-
+	cout << "            Matrix B" << endl;
+	Matrix B = Matrix("MatrixB.txt");
+	A.print();
+	//------------------------------------
+	//Matrix Addition Test 
+	cout << "            A+B" << endl;
+	A = A + B;
+	A.print();
+	//------------------------------------
+	//Matrix Subtraction Test
+	cout << "            B-B" << endl;
+	B = B - B;
+	B.print();
+	//------------------------------------
+	//Matrix Multiplication Test
 	Matrix C = Matrix(A);
 	cout << "            Matrix C" << endl;
-	//C.print();
+	C.print();
 	cout << "            C*A" << endl;
 	C = C * A;
 	C.print();
+	//------------------------------------
+	cout << "-------------------------End Test-------------" << endl;
 }
