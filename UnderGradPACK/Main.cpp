@@ -75,7 +75,7 @@ void printBanner() {
 	cout<< borders[1] << endl;
 	cout << borders[2]<<" "<<" __  __                    ____    ______  ____     __  __" <<"           "<<borders[2]<< endl;
 	cout << borders[2] << " " << "/\\ \\/\\ \\                  /\\  _`\\ /\\  _  \\/\\  _`\\  /\\ \\/\\ \\  " << "        " << borders[2] << endl;
-	cout << borders[2] << " " << "\\ \\ \\ \\ \\     __          \\ \\ \\L\\ \\ \\ \\L\\ \\ \\ \\/\\_\\\ \\ \\/'/'   " << "       " << borders[2] << endl;
+	cout << borders[2] << " " << "\\ \\ \\ \\ \\     __          \\ \\ \\L\\ \\ \\ \\L\\ \\ \\ \\/\\_\\\\\ \\  /'/'   " << "      " << borders[2] << endl;
 	cout << borders[2] << " " << " \\ \\ \\ \\ \\  /'_ `\\  _______\\ \\ ,__/\\ \\  __ \\ \\ \\/_/_\\ \\ , <    " << "      " << borders[2] << endl;
 	cout << borders[2] << " " << "  \\ \\ \\_\\ \\/\\ \\L\\ \\/\\______\\\\ \\ \\/  \\ \\ \\/\\ \\ \\ \\L\\ \\\\ \\ \\\\`\\  " << "      " << borders[2] << endl;
 	cout << borders[2] << " " << "   \\ \\_____\\ \\____ \\/______/ \\ \\_\\   \\ \\_\\ \\_\\ \\____/ \\ \\_\\ \\_\\" << "      " << borders[2] << endl;
@@ -88,7 +88,7 @@ void printBanner() {
 	}
 	cout << borders[4] << endl<<endl << endl;
 	
-	cout << "Welcome to Under Grad PACK " << versionNum << "A Linear Algebra Toolbox" << endl << endl;
+	cout << "Welcome to Under Grad PACK " << versionNum << " A Linear Algebra Toolbox" << endl << endl;
 }
 void printBreak() {
 	cout << "---------------------------------------" << endl;
@@ -123,8 +123,6 @@ void promptUser() {
 		cin >> repeat;
 	} while(repeat == 'Y' || repeat == 'y');
 	
-	
-
 
 }
 void matrixTest() {
@@ -160,7 +158,18 @@ void matrixTest() {
 	printBreak();
 }
 void scalarTest() {
+	printBreak();
 
+	Matrix A = Matrix("MatrixA.txt");
+	cout << "            Matrix A" << endl;
+	A.print();
+	//--------------------------------------
+	cout << "            Matrix B" << endl;
+	Matrix B = Matrix("MatrixB.txt");
+	A.print();
+	printBreak();
+	//Scalar addition----------------
+	cout << "      Matrix Addition Test: A+B" << endl;
 }
 void transposeTest() {
 
