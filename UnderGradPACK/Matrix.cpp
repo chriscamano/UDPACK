@@ -217,7 +217,22 @@ double& Matrix::operator()(const unsigned& row, const unsigned& col)
 }
 
 Matrix Matrix::transpose() {
-	return 0();
+
+	Matrix temp(m_colSize, m_rowSize, 1.00);
+
+	// Double for loop to access each individual
+	// element from matrix.
+	for (int i = 0; i < m_rowSize; i++) {
+		for (int j = 0; j < m_colSize; j++) {
+			// moving row elements from original
+			// matrix to column elements from new
+			// matrix.
+			temp(j, i) = this->m_matrix[i][j];
+		}
+	}
+	
+
+	return temp;
 }
 
 unsigned Matrix::getRows() const {
