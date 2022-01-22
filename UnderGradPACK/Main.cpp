@@ -66,8 +66,6 @@ void printBanner() {
 	char borders[5] = { '\xc9' ,'\xBB','\xBA','\xC8','\xBC' };
 
 
-
-
 	cout << borders[0];
 	for (int i = 0; i < 70; i++) {
 		cout << '\xCD';
@@ -109,11 +107,13 @@ void promptUser() {
 		switch (choice) {
 		case 1:
 			scalarTest();
+			break;
 		case 2:
-
 			matrixTest();
+			break;
 		case 3:
 			transposeTest();
+			break;
 		
 			
 		}
@@ -168,8 +168,22 @@ void scalarTest() {
 	Matrix B = Matrix("MatrixB.txt");
 	A.print();
 	printBreak();
-	//Scalar addition----------------
-	cout << "      Matrix Addition Test: A+B" << endl;
+	//Scalar multiplication----------------
+	double scalar;
+	cout << "Enter a scalar:";
+	cin >> scalar;
+	cout << "      Scalar Multiplication Test: " << scalar << " * A" << endl;
+	cout << endl;
+	A = A * scalar;
+	A.print();
+	cout << "Enter a scalar:";
+	cin >> scalar;
+	//Scalar Division----------------------
+	cout << "      Scalar Division Test: B / "<<scalar<<endl;
+
+	B = B / scalar;
+	B.print();
+
 }
 void transposeTest() {
 

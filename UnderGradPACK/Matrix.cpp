@@ -7,6 +7,7 @@
 using namespace std;
 /*
 Default Constructor: Accepts matrix dimension and initial value for each cell
+Author: Chris Camano
 */
 Matrix::Matrix(unsigned rowSize, unsigned colSize, double initial) {
 
@@ -22,6 +23,7 @@ Matrix::Matrix(unsigned rowSize, unsigned colSize, double initial) {
 
 /*
 File based matrix constructor, reads file data and generates matrix
+Author: Chris Camano
 */
 Matrix::Matrix(const char* file) {
 	ifstream file_A(file); // input file stream to open the file A.txt
@@ -87,7 +89,10 @@ Matrix::Matrix(const char* file) {
 	delete[] vector_A;
 }
 
-//Copy Constructor 
+/*
+Copy Constructor
+Author: Chris Camano
+*/
 Matrix::Matrix(const Matrix& right) {
 	this->m_colSize = right.getCols();
 	this->m_rowSize = right.getRows();
@@ -97,7 +102,12 @@ Matrix::Matrix(const Matrix& right) {
 Matrix::~Matrix() {
 }
 
-//Overloaded = operator for matrix assignnment 
+//-----------------------------------------------------------------------------------------------Operator Overloading--------------------------------------------------------------
+
+/*
+Overloaded = operator for matrix assignnment
+Author: Chris Camano
+*/
 Matrix Matrix::operator=(const Matrix& right) {
 	this->m_colSize = right.getCols();
 	this->m_rowSize = right.getRows();
@@ -105,7 +115,10 @@ Matrix Matrix::operator=(const Matrix& right) {
 	return  *this;
 }
 
-//Overloaded addition operator for matrix addition
+/*
+Overloaded addition operator for matrix addition
+Author: Chris Camano
+*/
 Matrix Matrix::operator+(Matrix& right) {
 	if (m_colSize == right.getCols() && m_rowSize == right.getRows()) {
 		//create new Matrix representing sum
@@ -123,7 +136,11 @@ Matrix Matrix::operator+(Matrix& right) {
 		return *this;
 	}
 }
-//Overloaded subtraction operator for matrix addition
+/*
+Overloaded subtraction operator for matrix subtraction
+Author: Chris Camano
+*/
+
 Matrix Matrix::operator-(Matrix& right) {
 	if (m_colSize == right.getCols() && m_rowSize == right.getRows()) {
 		//create new Matrix representing sum
@@ -142,8 +159,10 @@ Matrix Matrix::operator-(Matrix& right) {
 	}
 
 }
-
-//Overloaded multiplication operator for matrix multiplication 
+/*
+Overloaded multiplication operator for matrix multiplication
+Author: Chris Camano
+*/
 Matrix Matrix::operator*(Matrix& right) {
 	Matrix product(m_rowSize, right.getCols(), 0.0);
 	if (m_colSize == right.getRows()) {
@@ -165,31 +184,18 @@ Matrix Matrix::operator*(Matrix& right) {
 	}
 }
 
-
-
-// Scalar Addition
-Matrix Matrix::operator+(double& scalar) {
-	Matrix result(m_rowSize, m_colSize, 0.0);
-	for (unsigned i = 0; i < m_rowSize; i++) {
-		for (unsigned j = 0; j < m_colSize; j++) {
-			result(i, j) = this->m_matrix[i][j] + scalar;
-		}
-	}
-	return result;
+/*
+Overloaded () operator for matrix index referncing
+Author: Chris Camano
+*/
+double& Matrix::operator()(const unsigned& row, const unsigned& col)
+{
+	return this->m_matrix[row][col];
 }
 
-// Scalar Subraction
-Matrix Matrix::operator-(double& scalar) {
-	Matrix result(m_rowSize, m_colSize, 0.0);
-	for (unsigned i = 0; i < m_rowSize; i++) {
-		for (unsigned j = 0; j < m_colSize; j++) {
-			result(i, j) = this->m_matrix[i][j] - scalar;
-		}
-	}
-	return result;
-}
 
 // Scalar Multiplication
+//Author: Chris Camano
 Matrix Matrix::operator*(double& scalar) {
 	Matrix result(m_rowSize, m_colSize, 0.0);
 	for (unsigned i = 0; i < m_rowSize; i++) {
@@ -201,6 +207,7 @@ Matrix Matrix::operator*(double& scalar) {
 }
 
 // Scalar Division
+//Author: Chris Camano
 Matrix Matrix::operator/(double& scalar) {
 	Matrix result(m_rowSize, m_colSize, 0.0);
 	for (unsigned i = 0; i < m_rowSize; i++) {
@@ -211,11 +218,13 @@ Matrix Matrix::operator/(double& scalar) {
 	return result;
 }
 
-double& Matrix::operator()(const unsigned& row, const unsigned& col)
-{
-	return this->m_matrix[row][col];
-}
 
+//-----------------------------------------------------------------------------------------------Utility--------------------------------------------------------------
+
+/*
+Transpose Function
+Author: Juvenal Barajas
+*/
 Matrix Matrix::transpose() {
 
 	Matrix temp(m_colSize, m_rowSize, 1.00);
@@ -235,15 +244,12 @@ Matrix Matrix::transpose() {
 	return temp;
 }
 
-unsigned Matrix::getRows() const {
-	return m_rowSize;
-}
-
-unsigned Matrix::getCols() const {
-	return m_colSize;
-}
 
 
+/*
+Adaptive printing function
+Author: Chris Camano
+*/
 void Matrix::print() {
 	char borders[5] = { '\xc9' ,'\xBB','\xBA','\xC8','\xBC' };
 	string s;
@@ -295,6 +301,7 @@ void Matrix::print() {
 	cout << borders[4] << endl;
 
 }
+//-----------------------------------------------------------------------------------------------Helper Functions--------------------------------------------------------------
 
 void Matrix::printSpaces(const int& size)
 {
@@ -303,3 +310,10 @@ void Matrix::printSpaces(const int& size)
 	}
 }
 
+unsigned Matrix::getRows() const {
+	return m_rowSize;
+}
+
+unsigned Matrix::getCols() const {
+	return m_colSize;
+}
