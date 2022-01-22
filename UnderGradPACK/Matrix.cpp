@@ -244,7 +244,31 @@ Matrix Matrix::transpose() {
 	return temp;
 }
 
+/*
+Trace Function
+Author: Juvenal Barajas
+*/
+double Matrix::trace() {
+	
+	// return -1 if not NxN
+	if (m_rowSize != m_colSize) {
+		return -1;
+	}
 
+	double sum = 0;
+
+	for (int i = 0; i < m_rowSize; i++) {
+		for (int j = 0; j < m_colSize; j++) {
+			// if matrix coordinate is on the diagonal.
+			if (i == j) {
+				// Increment sum by diagonal element's value.
+				sum = sum + this->m_matrix[i][j];
+			}
+		}
+	}
+
+	return sum;
+}
 
 /*
 Adaptive printing function
