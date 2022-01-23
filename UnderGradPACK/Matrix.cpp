@@ -15,8 +15,7 @@ Matrix::Matrix(unsigned rowSize, unsigned colSize, double initial) {
 	m_colSize = colSize;
 	m_matrix.resize(rowSize);
 
-	for (unsigned i = 0; i < m_matrix.size(); i++)
-	{
+	for (unsigned i = 0; i < m_matrix.size(); i++) {
 		m_matrix[i].resize(colSize, initial);
 	}
 }
@@ -239,9 +238,56 @@ Matrix Matrix::transpose() {
 			temp(j, i) = this->m_matrix[i][j];
 		}
 	}
-	
+
 
 	return temp;
+}
+
+vector<Matrix> Matrix::LUFactor() {
+	if (this->getCols() != this->getRows()) {
+		cout << "Matrix is not square LU factorization undefined" << endl;
+	}
+	int n = this->getCols();
+	unsigned partialSum = 0;
+	vector<Matrix> LUFactors;
+	
+	Matrix L = eye(n);
+	Matrix U(m_colSize, m_rowSize, 0);
+	
+	//LU Decomposition algorithm with column pivoting 
+	//shorturl.at/fjxF7
+	for (int k = 0; k < n; k++) {
+		//Copy diagonal element of A to U 
+		U(k, k) = this->m_matrix[k][k];
+
+		//Pivot Column Calculations
+		//For each row set elements of L to the element of A divided by the diagonal of U 
+		//For each column set elements of U to corresponding element of A
+		for (int i = k+1; i < n; i++) {
+			L(i, k) = this->m_matrix[i][k] / U(k, k);
+			U(k, i) = this->m_matrix[k][i];
+		}
+
+		//Matrix update calculations set each element of A to the difference of the upper and 
+		//Lower matricies
+		for (int i = k + 1; i < n; i++) {
+			for (int j = k + 1; j < n; j++) {
+				this->m_matrix[i][j] = this->m_matrix[i][j] - (L(i, k) * U(k, j));
+			}
+		}
+	}
+
+	LUFactors.push_back(L);
+	LUFactors.push_back(U);
+	return LUFactors;
+}
+
+Matrix Matrix::eye(int& n) {
+	Matrix I(n, n, 0);
+	for (int i = 0; i < n; i++) {
+		I(i, i) = 1.0;
+	}
+	return I;
 }
 
 

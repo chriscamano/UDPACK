@@ -27,13 +27,15 @@ public:
 	Matrix operator-(Matrix&);
 	Matrix operator*(Matrix&);
 	//Scalar Operations
-	Matrix operator+(double&);
-	Matrix operator-(double&);
 	Matrix operator*(double&);
 	Matrix operator/(double&);
+	//Utility Functions
+	Matrix transpose();
+	vector<Matrix> LUFactor();
+	Matrix eye(int&);
 	//Matrix syntax functions 
 	double& operator()(const unsigned&, const unsigned&);
-	Matrix transpose();
+	
 	unsigned getRows() const;
 	unsigned getCols() const;
 	void print();
