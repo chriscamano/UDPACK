@@ -139,16 +139,6 @@ void matrixTest() {
 	Matrix B = Matrix("MatrixB.txt");
 	A.print();
 	printBreak();
-	//Matrix Addition Test----------------
-	cout << "      Matrix Addition Test: A+B" << endl;
-	A = A + B;
-	A.print();
-	printBreak();
-	//Matrix Subtraction Test
-	cout << "      Matrix Subtraction Test: B-B" << endl;
-	B = B - B;
-	B.print();
-	printBreak();
 	//Matrix Multiplication Test
 	 A = Matrix("MatrixA.txt");
 	Matrix C = Matrix(A);

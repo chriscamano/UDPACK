@@ -114,54 +114,6 @@ Matrix Matrix::operator=(const Matrix& right) {
 	return  *this;
 }
 
-/*
-Overloaded addition operator for matrix addition
-Author: Chris Camano
-*/
-Matrix Matrix::operator+(Matrix& right) {
-	if (m_colSize == right.getCols() && m_rowSize == right.getRows()) {
-		//create new Matrix representing sum
-		Matrix sum(m_rowSize, m_colSize, 0.0);
-		//For each element pair add sum to relative index and return sum matrix
-		for (unsigned i = 0; i < m_rowSize; i++) {
-			for (unsigned j = 0; j < m_colSize; j++) {
-				sum(i, j) = this->m_matrix[i][j] + right(i, j);
-			}
-		}
-		return sum;
-	}
-	else {
-		cout << "Dimension Mis-Match error" << endl;
-		return *this;
-	}
-}
-/*
-Overloaded subtraction operator for matrix subtraction
-Author: Chris Camano
-*/
-
-Matrix Matrix::operator-(Matrix& right) {
-	if (m_colSize == right.getCols() && m_rowSize == right.getRows()) {
-		//create new Matrix representing sum
-		Matrix sum(m_rowSize, m_colSize, 0.0);
-		//For each element pair add sum to relative index and return sum matrix
-		for (unsigned i = 0; i < m_rowSize; i++) {
-			for (unsigned j = 0; j < m_colSize; j++) {
-				sum(i, j) = this->m_matrix[i][j] - right(i, j);
-			}
-		}
-		return sum;
-	}
-	else {
-		cout << "Dimension Mis-Match error" << endl;
-		return *this;
-	}
-
-}
-/*
-Overloaded multiplication operator for matrix multiplication
-Author: Chris Camano
-*/
 Matrix Matrix::operator*(Matrix& right) {
 	Matrix product(m_rowSize, right.getCols(), 0.0);
 	if (m_colSize == right.getRows()) {
@@ -249,7 +201,7 @@ Trace Function
 Author: Juvenal Barajas
 */
 double Matrix::trace() {
-	
+
 	// return -1 if not NxN
 	if (m_rowSize != m_colSize) {
 		return -1;
@@ -266,7 +218,13 @@ double Matrix::trace() {
 			}
 		}
 	}
+	return sum;
+}
 
+/*
+LU factorization with column pivoting see link posted below VVVVVVVV
+Author: Chris Camano
+*/
 vector<Matrix> Matrix::LUFactor() {
 	if (this->getCols() != this->getRows()) {
 		cout << "Matrix is not square LU factorization undefined" << endl;
@@ -306,6 +264,10 @@ vector<Matrix> Matrix::LUFactor() {
 	return LUFactors;
 }
 
+/*
+Identity Function: Creates Identity matrix of n dimensions
+Author: Juvenal Barajas
+*/
 Matrix Matrix::eye(int& n) {
 	Matrix I(n, n, 0);
 	for (int i = 0; i < n; i++) {
@@ -315,8 +277,7 @@ Matrix Matrix::eye(int& n) {
 }
 
 
-	return sum;
-}
+
 
 /*
 Adaptive printing function

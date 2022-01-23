@@ -21,23 +21,19 @@ public:
 	~Matrix();
 
 	Matrix operator=(const Matrix& right);
-
+	double& operator()(const unsigned&, const unsigned&);
 	//Matrix Operations 
-	Matrix operator+(Matrix&);
-	Matrix operator-(Matrix&);
 	Matrix operator*(Matrix&);
 	//Scalar Operations
 	Matrix operator*(double&);
 	Matrix operator/(double&);
 	//Utility Functions
 	Matrix transpose();
+
+	double trace();
 	vector<Matrix> LUFactor();
 	Matrix eye(int&);
 	//Matrix syntax functions 
-	double& operator()(const unsigned&, const unsigned&);
-
-	Matrix transpose();
-	double trace();
 	unsigned getRows() const;
 	unsigned getCols() const;
 	void print();
