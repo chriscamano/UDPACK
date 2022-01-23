@@ -35,7 +35,9 @@ public:
 	Matrix eye(int&);
 	//Matrix syntax functions 
 	double& operator()(const unsigned&, const unsigned&);
-	
+
+	Matrix transpose();
+	double trace();
 	unsigned getRows() const;
 	unsigned getCols() const;
 	void print();
