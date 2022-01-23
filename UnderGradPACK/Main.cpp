@@ -8,6 +8,7 @@ void promptUser();
 void matrixTest();
 void scalarTest();
 void transposeTest();
+void LUTest();
 
 string versionNum = "v0.1";
 
@@ -100,6 +101,7 @@ void promptUser() {
 		cout << "      1.Scalar properties" << endl;
 		cout << "      2.Matrix properties" << endl;
 		cout << "      3.Transpose" << endl;
+		cout << "      4.LU Decomposition " << endl;
 		cout << endl;
 		cout << "Test Choice:";
 		cin >> choice;
@@ -114,7 +116,8 @@ void promptUser() {
 		case 3:
 			transposeTest();
 			break;
-		
+		case 4:
+			LUTest();
 			
 		}
 		
@@ -142,12 +145,12 @@ void matrixTest() {
 	A.print();
 	printBreak();
 	//Matrix Subtraction Test
-
 	cout << "      Matrix Subtraction Test: B-B" << endl;
 	B = B - B;
 	B.print();
 	printBreak();
 	//Matrix Multiplication Test
+	 A = Matrix("MatrixA.txt");
 	Matrix C = Matrix(A);
 	cout << "            Matrix C" << endl;
 	C.print();
@@ -186,5 +189,28 @@ void scalarTest() {
 
 }
 void transposeTest() {
+
+}
+void LUTest() {
+	Matrix A = Matrix("MatrixA.txt");
+	cout << "            Matrix A" << endl;
+	A.print();
+	vector<Matrix> decomposition = A.LUFactor();
+	for (int i = 0; i < decomposition.size(); i++) {
+		if (i == 0) {
+			cout << "            L" << endl;
+			decomposition[i].print();
+		}
+		if (i == 1) {
+			cout << "            U" << endl;
+			decomposition[i].print();
+		}	
+	}
+	cout << "            L*U" << endl;
+	Matrix A_ = decomposition[0] * decomposition[1];
+	A_.print();
+	cout << "            A-L*U" << endl;
+	
+	
 
 }
